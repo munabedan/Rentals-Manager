@@ -46,6 +46,8 @@ Muna Bedan munabedan@gmail.com
 
 ## Version History
 
+* 1.0.0
+    * configured firebase
 
 * 0.0.0
     * Not ready for release
