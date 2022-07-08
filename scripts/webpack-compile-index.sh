@@ -1,1 +1,1 @@
-node_modules/.bin/webpack --entry ./src/index.js -o dist/ --output-filename index.js
+node_modules/.bin/webpack --entry ./src/index.js -o dist/assets/js --output-filename index.js

@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "build tools",
         "backend",
-        "vcs"
+        "vcs",
+        "user interface"
     ]
 }
