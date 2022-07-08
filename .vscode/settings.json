@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "build tools",
-        "backend"
+        "backend",
+        "vcs"
     ]
 }
