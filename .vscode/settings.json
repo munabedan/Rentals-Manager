@@ -3,6 +3,7 @@
         "build tools",
         "backend",
         "vcs",
-        "user interface"
+        "user interface",
+        "login"
     ]
 }
