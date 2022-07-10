@@ -4,6 +4,7 @@
         "backend",
         "vcs",
         "user interface",
-        "login"
+        "login",
+        "admin"
     ]
 }
