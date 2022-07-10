@@ -61,9 +61,9 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
                         <li>
-                            <a id="signout_button" class="dropdown-item d-flex align-items-center" >
+                            <a id="signout_button" class="dropdown-item d-flex align-items-center">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span >Sign Out</span>
+                                <span>Sign Out</span>
                             </a>
                         </li>
 
@@ -83,75 +83,80 @@
 
         </div><!-- End Page Title -->
 
+        <div id="form_container">
 
+        </div>
 
+        <template id="form_template">
+            <div class="row justify-content-md-center">
+                <div class="col-lg-6 ">
 
-        <div class="row justify-content-md-center">
-            <div class="col-lg-6 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">General Form Elements</h5>
 
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">General Form Elements</h5>
-
-                        <!-- General Form Elements -->
-                        <form>
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
+                            <!-- General Form Elements -->
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  id="userName">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control">
+                                <div class="row mb-3">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control"  id="userEmail">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control">
+                                <div class="row mb-3">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control"  id="userPassword">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Submit Button</label>
-                                <div class="col-sm-10">
-                                    <!-- Vertically centered Modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#add_user_modal">
-                                        <i class="bi bi-person-plus-fill"></i> Add user
-                                    </button>
-                                    <div class="modal fade" id="add_user_modal" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Add user</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Confirming this action will create a new user account.
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Submit Button</label>
+                                    <div class="col-sm-10">
+                                        <!-- Vertically centered Modal -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#add_user_modal">
+                                            <i class="bi bi-person-plus-fill"></i> Add user
+                                        </button>
+                                        <div class="modal fade" id="add_user_modal" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Add user</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Confirming this action will create a new user account.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" id="add_new_user_confirm_button"class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div><!-- End Vertically centered Modal-->
+                                        </div><!-- End Vertically centered Modal-->
+                                    </div>
                                 </div>
-                            </div>
 
-                        </form><!-- End General Form Elements -->
+                            </form><!-- End General Form Elements -->
 
+                        </div>
                     </div>
+
                 </div>
 
             </div>
 
-        </div>
+        </template>
+
         <section class="section dashboard">
             <div class="row">
 
@@ -161,7 +166,7 @@
 
                         <div class="filter">
                             <div class="icon">
-                                <button type="button" class="btn btn-primary"><i class="bi bi-plus"></i> New</button>
+                                <button type="button" id="new_user_button"class="btn btn-primary"><i class="bi bi-plus"></i> New</button>
                             </div>
 
                         </div>
@@ -186,12 +191,12 @@
                                         <td>munabedan@gmail.com</td>
                                         <td>
                                             <div class="row mb-3">
-                                              <div class="col-sm-10">
+                                                <div class="col-sm-10">
                                                     <!-- Vertically centered Modal -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#remove_user_modal">
-                                                        <i class="bi bi-person-dash-fill"></i> 
-                                                    
+                                                        <i class="bi bi-person-dash-fill"></i>
+
                                                     </button>
 
                                                     <div class="modal fade" id="remove_user_modal" tabindex="-1">
@@ -199,7 +204,8 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title">Remove user</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -208,12 +214,13 @@
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Confirm</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div><!-- End Vertically centered Modal-->
-                                                  
+
                                                 </div>
                                             </div>
                                         </td>
@@ -224,12 +231,12 @@
                                         <td>alexjino@gmail.com</td>
                                         <td>
                                             <div class="row mb-3">
-                                              <div class="col-sm-10">
+                                                <div class="col-sm-10">
                                                     <!-- Vertically centered Modal -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#remove_user_modal">
-                                                        <i class="bi bi-person-dash-fill"></i> 
-                                                    
+                                                        <i class="bi bi-person-dash-fill"></i>
+
                                                     </button>
 
                                                     <div class="modal fade" id="remove_user_modal" tabindex="-1">
@@ -237,7 +244,8 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title">Remove user</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -246,12 +254,13 @@
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Confirm</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div><!-- End Vertically centered Modal-->
-                                                  
+
                                                 </div>
                                             </div>
                                         </td>

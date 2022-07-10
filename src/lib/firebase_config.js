@@ -23,5 +23,6 @@ const app = initializeApp(firebaseConfig);
 
 
 export {
-    app
+    app,
+    firebaseConfig
 }
