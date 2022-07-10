@@ -72,7 +72,7 @@ const load_home_page = (access_level) => {
         //window.location.replace("dashboard_landlord.html")
     }
     else if (access_level == "admin"){
-        //window.location.replace("admin_dashboard.html")
+        window.location.replace("admin_dashboard.html")
     }
     else if (access_level === "tenant") {
         //window.location.replace("dashboard_tenant.html")
