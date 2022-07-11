@@ -2,6 +2,7 @@
 
 import { deleteApp, initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut } from "firebase/auth"
+import {getFirestore} from "firebase/firestore"
 import { app, firebaseConfig } from "./firebase_config"
 
 const fetch_current_user_email = () => {
@@ -63,7 +64,7 @@ const add_new_user = () => {
             // create new user
             let new_user_inputs = read_new_user_form_input("userName", "userEmail", "userPassword")
 
-            create_new_user(new_user_inputs[1], new_user_inputs[2])
+            create_new_user(new_user_inputs)
 
             event.preventDefault();
 
@@ -80,7 +81,7 @@ const display_new_user_form = () => {
 
     const add_new_user_form = template.content.firstElementChild.cloneNode(true)
     container.appendChild(add_new_user_form)
-    
+
 }
 
 const read_new_user_form_input = (name_input_tag_id, email_input_tag_id, password_input_tag_id) => {
@@ -93,19 +94,17 @@ const read_new_user_form_input = (name_input_tag_id, email_input_tag_id, passwor
 }
 
 
-const create_new_user = (email, password) => {
+const create_new_user = (new_user_inputs) => {
     var config = firebaseConfig
-    console.log("load config")
     const secondaryApp = initializeApp(config, "secondary")
-    console.log("initialize secondary config")
     const secondary_Auth = getAuth(secondaryApp)
-    console.log("get auth")
 
-    createUserWithEmailAndPassword(secondary_Auth, email, password)
+    createUserWithEmailAndPassword(secondary_Auth, new_user_inputs[1], new_user_inputs[2])
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             conceal_add_user_form()
+            create_user_collection(new_user_inputs[1],new_user_inputs[0],"landlord")
             // ...
         })
         .catch((error) => {
@@ -119,27 +118,101 @@ const create_new_user = (email, password) => {
                 )
             }
         )
-
-
-
 }
 
-const conceal_add_user_form = () =>{
+import {doc,setDoc} from "firebase/firestore";
+
+const create_user_collection = async (user_email,user_name,access_level) => {
+    const db = getFirestore(app)
+
+    await setDoc(doc(db,"users",user_email),{
+        access_level: access_level,
+        name: user_name
+    })
+
+    
+}
+
+
+const conceal_add_user_form = () => {
     let form_container = document.getElementById("form_container")
-    form_container.innerHTML= ""
+    form_container.innerHTML = ""
 
 }
 
 
 
+const display_users_table = () => {
+
+    create_table()
+    add_rows_to_table()
+    initialize_datables()
 
 
 
+}
 
+
+
+/**
+* Easy selector helper function
+*/
+const select = (el, all = false) => {
+    el = el.trim()
+    if (all) {
+        return [...document.querySelectorAll(el)]
+    } else {
+        return document.querySelector(el)
+    }
+}
+
+const initialize_datables = () => {
+
+    /**
+* Initiate Datatables
+*/
+    const datatables = select('.datatable', true)
+    datatables.forEach(datatable => {
+        new simpleDatatables.DataTable(datatable);
+    })
+
+}
+
+const create_table = () => {
+    //create table
+    let table_container = document.getElementById("table_container")
+    let table_template = document.getElementById("table_template")
+
+
+    const users_table = table_template.content.firstElementChild.cloneNode(true)
+    table_container.appendChild(users_table)
+
+}
+
+const add_rows_to_table = () => {
+    //add rows to table
+    let table_row_container = document.getElementById("table_row_container")
+    let table_row_template = document.getElementById("table_row_template")
+
+    const user_data = table_row_template.content.firstElementChild.cloneNode(true)
+
+    let td = user_data.querySelectorAll("td")
+    td[0].textContent = "Muna Bedan"
+    td[1].textContent = "munabedan@gmail.com"
+
+    table_row_container.appendChild(user_data)
+
+}
+
+const fetch_user_table = () => {
+
+    return
+}
 
 export {
     fetch_current_user_email,
     sign_out_user,
     add_new_user,
-    read_new_user_form_input
+    read_new_user_form_input,
+    display_users_table,
 }

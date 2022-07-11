@@ -1,4 +1,4 @@
-import { add_new_user, fetch_current_user_email, read_new_user_form_input, sign_out_user } from "./lib/admin";
+import { add_new_user, display_users_table, fetch_current_user_email, read_new_user_form_input, sign_out_user } from "./lib/admin";
 
 
 //check if page has loaded
@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
   console.log("loaded maite")
+
+  display_users_table()
 
   // signout event listener
   document.getElementById("signout_button").addEventListener('click',

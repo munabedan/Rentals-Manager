@@ -100,19 +100,19 @@
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"  id="userName">
+                                        <input type="text" class="form-control" id="userName">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control"  id="userEmail">
+                                        <input type="email" class="form-control" id="userEmail">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control"  id="userPassword">
+                                        <input type="password" class="form-control" id="userPassword">
                                     </div>
                                 </div>
 
@@ -138,7 +138,9 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" id="add_new_user_confirm_button"class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+                                                        <button type="button" id="add_new_user_confirm_button"
+                                                            class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Confirm</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,110 +168,74 @@
 
                         <div class="filter">
                             <div class="icon">
-                                <button type="button" id="new_user_button"class="btn btn-primary"><i class="bi bi-plus"></i> New</button>
+                                <button type="button" id="new_user_button" class="btn btn-primary"><i
+                                        class="bi bi-plus"></i> New</button>
                             </div>
 
                         </div>
 
                         <div class="card-body">
                             <h5 class="card-title">Landlords </h5>
+                            <div id="table_container">
 
-                            <table class="table table-borderless datatable ">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">actions</th>
+                            </div>
+                            <template id="table_template">
+                                <table class="table table-borderless datatable ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">actions</th>
 
 
-                                    </tr>
-                                </thead>
-                                <tbody id="users_table">
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_row_container">
 
-                                    <tr>
-                                        <td>Muna Bedan</td>
-                                        <td>munabedan@gmail.com</td>
-                                        <td>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-10">
-                                                    <!-- Vertically centered Modal -->
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#remove_user_modal">
-                                                        <i class="bi bi-person-dash-fill"></i>
+                                    </tbody>
+                                </table>
+                            </template>
 
-                                                    </button>
+                            <template id="table_row_template">
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-10">
+                                                <!-- Vertically centered Modal -->
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#remove_user_modal">
+                                                    <i class="bi bi-person-dash-fill"></i>
 
-                                                    <div class="modal fade" id="remove_user_modal" tabindex="-1">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Remove user</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Confirming this action will delete user account.
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-danger">Confirm</button>
-                                                                </div>
+                                                </button>
+
+                                                <div class="modal fade" id="remove_user_modal" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Remove user</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Confirming this action will delete user account.
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Confirm</button>
                                                             </div>
                                                         </div>
-                                                    </div><!-- End Vertically centered Modal-->
+                                                    </div>
+                                                </div><!-- End Vertically centered Modal-->
 
-                                                </div>
                                             </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Alex Gino</td>
-                                        <td>alexjino@gmail.com</td>
-                                        <td>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-10">
-                                                    <!-- Vertically centered Modal -->
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#remove_user_modal">
-                                                        <i class="bi bi-person-dash-fill"></i>
-
-                                                    </button>
-
-                                                    <div class="modal fade" id="remove_user_modal" tabindex="-1">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Remove user</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Confirming this action will delete user account.
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-danger">Confirm</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- End Vertically centered Modal-->
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-
-
-                                </tbody>
-                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
 
                         </div>
 
@@ -301,7 +267,7 @@
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!--<script src="assets/js/main.js"></script>-->
 
 
 
