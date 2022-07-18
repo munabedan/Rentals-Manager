@@ -83,6 +83,17 @@
 
         </div><!-- End Page Title -->
 
+        <div id="alert_container">
+
+        </div>
+        <template id="success_alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <p></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </template>
+
+
         <div id="form_container">
 
         </div>
@@ -93,7 +104,8 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">General Form Elements</h5>
+                            <h5 class="card-title">Create new user</h5>
+
 
                             <!-- General Form Elements -->
                             <form>
@@ -112,7 +124,7 @@
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="userPassword">
+                                        <input type="text" class="form-control" id="userPassword">
                                     </div>
                                 </div>
 
@@ -120,10 +132,13 @@
                                     <label class="col-sm-2 col-form-label">Submit Button</label>
                                     <div class="col-sm-10">
                                         <!-- Vertically centered Modal -->
+                                        <button type="button" class="btn btn-secondary" id="form_dismiss">Dismiss form</button>
+
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#add_user_modal">
                                             <i class="bi bi-person-plus-fill"></i> Add user
                                         </button>
+
                                         <div class="modal fade" id="add_user_modal" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
@@ -180,12 +195,12 @@
 
                             </div>
                             <template id="table_template">
-                                <table class="table table-borderless datatable ">
+                                <table class="table table-borderless " id="myTable">
                                     <thead>
                                         <tr>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">actions</th>
+                                            <th scope="col">Actions</th>
 
 
                                         </tr>
@@ -210,26 +225,6 @@
 
                                                 </button>
 
-                                                <div class="modal fade" id="remove_user_modal" tabindex="-1">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Remove user</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Confirming this action will delete user account.
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-danger">Confirm</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- End Vertically centered Modal-->
 
                                             </div>
                                         </div>
@@ -237,12 +232,35 @@
                                 </tr>
                             </template>
 
+
+
+
                         </div>
 
                     </div>
                 </div><!-- End Recent Sales -->
 
             </div>
+
+
+
+            <div class="modal fade" id="remove_user_modal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Remove user</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Confirming this action will delete user account.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-danger" id="remove_user_confirm_button">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Vertically centered Modal-->
         </section>
 
 
@@ -266,7 +284,7 @@
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <!--<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>-->
     <!--<script src="assets/js/main.js"></script>-->
 
 

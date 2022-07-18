@@ -1,4 +1,5 @@
-import { add_new_user, display_users_table, fetch_current_user_email, read_new_user_form_input, sign_out_user } from "./lib/admin";
+import { add_new_user, delete_user_account, display_users_table, fetch_current_user_email, sign_out_user } from "./lib/admin";
+
 
 
 //check if page has loaded
@@ -19,8 +20,8 @@ function init() {
 
   )
 
-    // add new user event listener
-    document.getElementById("new_user_button").addEventListener('click',
+  // add new user event listener
+  document.getElementById("new_user_button").addEventListener('click',
     function (event) {
 
       add_new_user()
@@ -28,8 +29,23 @@ function init() {
       event.preventDefault();
 
     }
-
   )
+
+
+    // add confirm event listener
+    document.getElementById("remove_user_confirm_button").addEventListener('click',
+    function (event) {
+
+      console.log("click")
+      let email = document.getElementById("remove_user_confirm_button").dataset.email
+      delete_user_account(email)
+
+      event.preventDefault();
+
+    }
+  )
+
+ 
   fetch_current_user_email()
 };
 
