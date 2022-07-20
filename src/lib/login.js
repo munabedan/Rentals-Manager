@@ -69,9 +69,9 @@ const check_user_permissions = async (email) => {
 const load_home_page = (access_level) => {
     console.log(access_level)
     if (access_level === "landlord"){
-        //window.location.replace("dashboard_landlord.html")
+        window.location.replace("landlord_dashboard.html")
     }
-    else if (access_level == "admin"){
+    else if (access_level === "admin"){
         window.location.replace("admin_dashboard.html")
     }
     else if (access_level === "tenant") {

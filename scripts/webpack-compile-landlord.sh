@@ -1,0 +1,1 @@
+node_modules/.bin/webpack --entry ./src/landlord_dashboard.js -o dist/assets/js --output-filename landlord_dashboard.js
