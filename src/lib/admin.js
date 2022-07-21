@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut } 
 import { getFirestore, updateDoc } from "firebase/firestore"
 import { app, firebaseConfig } from "./firebase_config"
 
-const fetch_current_user_email = () => {
+const fetch_current_user_email = async () => {
     const auth = getAuth(app);
 
     onAuthStateChanged(
@@ -16,6 +16,7 @@ const fetch_current_user_email = () => {
                 const email = user.email;
 
                 display_user_email(email)
+                
             } else {
                 //user is signed out
             }

@@ -1,4 +1,5 @@
-import {  fetch_current_user_email, sign_out_user } from "./lib/admin";
+import { fetch_current_user_email, sign_out_user } from "./lib/admin";
+import { add_new_property, delete_property, display_property_table } from "./lib/landlord";
 
 
 
@@ -7,20 +8,47 @@ document.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
   console.log("loaded maite")
+  fetch_current_user_email()
+
+  display_property_table()
+
+
+
 
   // signout event listener
   document.getElementById("signout_button").addEventListener('click',
     function (event) {
-        sign_out_user()
+      sign_out_user()
       event.preventDefault();
 
     }
 
   )
 
-    
- 
-  fetch_current_user_email()
+
+  // add new user event listener
+  document.getElementById("new_property_button").addEventListener('click',
+    function (event) {
+
+      add_new_property()
+
+      event.preventDefault();
+
+    }
+  )
+
+  // add confirm event listener
+  document.getElementById("remove_property_confirm_button").addEventListener('click',
+    function (event) {
+
+      console.log("click")
+      let name = document.getElementById("remove_property_confirm_button").dataset.name
+      delete_property(name)
+
+      event.preventDefault();
+
+    }
+  )
 };
 
 
