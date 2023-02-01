@@ -1,0 +1,1 @@
+node_modules/.bin/webpack --entry ./src/unit_dashboard.js -o dist/assets/js --output-filename unit_dashboard.js

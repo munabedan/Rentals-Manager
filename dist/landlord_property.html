@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Rentals Manager - Property</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <script type="module" src="assets/js/property_dashboard.js"></script>
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+
+
+</head>
+
+<body class="toggle-sidebar">
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">Rentals Manager</span>
+            </a>
+        </div><!-- End Logo -->
+
+
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <span class="d-none d-md-block dropdown-toggle ps-2" id="user_profile"></span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                        <li>
+                            <a id="signout_button" class="dropdown-item d-flex align-items-center">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Property Dashboard</h1>
+
+        </div><!-- End Page Title -->
+
+        <div id="alert_container">
+
+        </div>
+        <template id="success_alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <p></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </template>
+
+
+        <div id="form_container">
+
+        </div>
+
+        <template id="form_template">
+            <div class="row justify-content-md-center">
+                <div class="col-lg-6 ">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Add a new unit</h5>
+
+
+                            <!-- General Form Elements -->
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Unit Number</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="unitNumber">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Status</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="unitStatus">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Type</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="unitType">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="unitPrice">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Submit Button</label>
+                                    <div class="col-sm-10">
+                                        <!-- Vertically centered Modal -->
+                                        <button type="button" class="btn btn-secondary" id="form_dismiss">Dismiss
+                                            form</button>
+
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#add_unit_modal">
+                                            <i class="bi bi-person-plus-fill"></i> Add Unit
+                                        </button>
+
+                                        <div class="modal fade" id="add_unit_modal" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Add unit</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Confirming this action will create a new unit.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" id="add_new_unit_confirm_button"
+                                                            class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- End Vertically centered Modal-->
+                                    </div>
+                                </div>
+
+                            </form><!-- End General Form Elements -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </template>
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Recent Sales -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="filter">
+                            <div class="icon">
+                                <button type="button" id="new_unit_button" class="btn btn-primary"><i
+                                        class="bi bi-plus"></i> New</button>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Units </h5>
+                            <div id="table_container">
+
+                            </div>
+                            <template id="table_template">
+                                <table class="table table-borderless " id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Unit Number</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">type</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Actions</th>
+
+                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_row_container">
+
+                                    </tbody>
+                                </table>
+                            </template>
+
+                            <template id="table_row_template">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    
+                                    <td>
+                                        <div class="d-flex mb-3">
+                                            
+                                                <!-- Vertically centered Modal -->
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#remove_unit_modal">
+                                                    <i class="bi bi-person-dash-fill"></i>
+
+                                                </button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#view_unit_modal">
+                                                <i class="bi bi-eye"></i>
+
+                                            </button>
+
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div><!-- End Recent Sales -->
+
+            </div>
+
+
+
+            <div class="modal fade" id="remove_unit_modal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Remove Unit</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Confirming this action will delete this unit.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-danger" id="remove_unit_confirm_button">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Vertically centered Modal-->
+
+            <div class="modal fade" id="view_unit_modal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">View Unit</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Confirming this action will view this unit.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-danger" id="view_unit_confirm_button">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Vertically centered Modal-->
+        </section>
+
+
+
+
+
+
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Muna Bedan</span></strong>. All Rights Reserved
+        </div>
+
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>-->
+    <!--<script src="assets/js/main.js"></script>-->
+
+
+
+
+</body>
+
+</html>

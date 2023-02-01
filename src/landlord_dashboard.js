@@ -1,5 +1,5 @@
 import { fetch_current_user_email, sign_out_user } from "./lib/admin";
-import { add_new_property, delete_property, display_property_table } from "./lib/landlord";
+import { add_new_property, delete_property, display_property_table, load_property_page } from "./lib/landlord";
 
 
 
@@ -49,6 +49,21 @@ function init() {
 
     }
   )
+
+    // add confirm event listener
+    document.getElementById("view_property_confirm_button").addEventListener('click',
+    function (event) {
+
+      console.log("click")
+      let name = document.getElementById("view_property_confirm_button").dataset.name
+      load_property_page(name)
+
+      event.preventDefault();
+
+    }
+  )
+  
+
 };
 
 

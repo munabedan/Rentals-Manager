@@ -29,7 +29,7 @@ const add_new_property = () => {
             //create_new_user(new_user_inputs)
             create_new_property(new_property_inputs).then(
                 conceal_add_property_form(),
-                alert("success_alert","successfully created new property"),
+                alert("success_alert", "successfully created new property"),
                 reload_properties_table()
             )
 
@@ -86,11 +86,6 @@ const read_new_property_form_input = (
     return new_property_inputs
 }
 
-
-
-
-
-
 const create_new_property = async (new_property_inputs) => {
     let config = firebaseConfig
 
@@ -102,7 +97,7 @@ const create_new_property = async (new_property_inputs) => {
 
 
     //const newPropertyRef =doc(db,"users", user_email,new_property_inputs[0] )
-    const newPropertyRef = doc(db, "users", user_email, "properties",new_property_inputs[0])
+    const newPropertyRef = doc(db, "users", user_email, "properties", new_property_inputs[0])
 
     await setDoc(newPropertyRef, {
         Name: new_property_inputs[0],
@@ -122,7 +117,6 @@ const conceal_add_property_form = () => {
     form_container.innerHTML = ""
 
 }
-
 
 const display_property_table = () => {
 
@@ -147,31 +141,28 @@ const create_table = () => {
 
 }
 
-
-
-
 const fetch_table_data = async () => {
     const db = getFirestore(app)
 
 
-    const auth =getAuth(app)
+    const auth = getAuth(app)
 
     onAuthStateChanged(
         auth,
-        (user)=>{
+        (user) => {
             if (user) {
                 //user is signed in
-                let user_email = user.email;   
+                let user_email = user.email;
                 console.log(user_email)
-                queryData(user_email)             
+                queryData(user_email)
             } else {
                 //user is signed out
             }
-        
+
         }
     )
 
-    const queryData = async(user_email) =>{
+    const queryData = async (user_email) => {
         console.log(user_email)
 
         const querySnapshot = await getDocs(collection(db, "users", user_email, "properties"));
@@ -185,7 +176,7 @@ const fetch_table_data = async () => {
         initialize_datables()
 
     }
- 
+
 
 }
 
@@ -208,14 +199,12 @@ const add_rows_to_table = (data) => {
     td[6].textContent = data.City
     td[7].textContent = data.Zip
 
-
-
-
-
-   
-   
     let button = property_data.querySelectorAll("button")
     button[0].id = data.Name
+    button[1].id = data.Name
+
+    
+
 
 
     table_row_container.appendChild(property_data)
@@ -228,69 +217,71 @@ const initialize_datables = () => {
 
 
     const myTable = document.getElementById("myTable");
-    const dataTable = new DataTable(myTable) ;
+    const dataTable = new DataTable(myTable);
 
 
-    dataTable.on('datatable.init', function (){
+    dataTable.on('datatable.init', function () {
         var buttons = document.querySelectorAll('button')
 
         console.log(buttons)
-        
+
 
         buttons.forEach(
-            (button,index)=>{
-                if(index === 0 || index === buttons.length-1 || button.textContent === "Close" ) return;
+            (button, index) => {
+                if (index === 0 || index === buttons.length - 1 || button.textContent === "Close") return;
                 button.addEventListener("click",
-                    ()=>{
+                    () => {
                         console.log(button.id)
-                        let confirm_button = document.getElementById("remove_property_confirm_button")
-                        confirm_button.dataset.name = button.id
+
+                        document.getElementById("remove_property_confirm_button").dataset.name = button.id
+                        document.getElementById("view_property_confirm_button").dataset.name = button.id
+                        
                     }
                 )
             }
         )
-      })
+    })
 
-    
+
 
 
 
 }
 
-const delete_property = async(name) => {
+const delete_property = async (name) => {
 
     const db = getFirestore(app)
 
-    const auth =getAuth(app)
+    const auth = getAuth(app)
 
     onAuthStateChanged(
         auth,
-        (user)=>{
+        (user) => {
             if (user) {
                 //user is signed in
-                let user_email = user.email;   
+                let user_email = user.email;
                 console.log(user_email)
-                delete_data(user_email)             
+                delete_data(user_email)
             } else {
                 //user is signed out
             }
-        
+
         }
     )
 
- 
-    const delete_data = async(user_email) =>{
-        const propertyRef = doc(db,"users",user_email,"properties",name)
+
+    const delete_data = async (user_email) => {
+        const propertyRef = doc(db, "users", user_email, "properties", name)
 
         await deleteDoc(propertyRef)
     }
-    
+
     conceal_modal()
-    alert("success_alert","successfully removed  property")
+    alert("success_alert", "successfully removed  property")
     reload_properties_table()
 
 }
-const conceal_modal = () =>{
+const conceal_modal = () => {
     let modal = document.getElementById("remove_property_modal")
     modal.classList.remove("show")
     modal.style.display = "none"
@@ -301,7 +292,7 @@ const conceal_modal = () =>{
 }
 
 
-const reload_properties_table = () =>{
+const reload_properties_table = () => {
     let table = document.getElementById("table_container")
     table.innerHTML = " "
     display_property_table()
@@ -311,7 +302,7 @@ const alert = (alert_id, alert_content) => {
     let alert_container = document.getElementById("alert_container")
     let alert_template = document.getElementById(alert_id)
 
-    
+
 
     let new_alert = alert_template.content.firstElementChild.cloneNode(true);
 
@@ -323,8 +314,22 @@ const alert = (alert_id, alert_content) => {
 }
 
 
+const load_property_page = (name) => {
+    console.log(name)
+    let property_Url = "landlord_property.html" 
+
+    // Save data to sessionStorage
+    sessionStorage.setItem('property', name);
+    window.location.replace(property_Url)
+
+
+
+}
+
+
 export {
     add_new_property,
     display_property_table,
-    delete_property
+    delete_property,
+    load_property_page
 }
