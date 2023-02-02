@@ -1,6 +1,6 @@
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc , addDoc} from "firebase/firestore";
 import { DataTable } from "simple-datatables";
 import { app, firebaseConfig } from "./firebase_config";
 
@@ -39,7 +39,7 @@ const initialize_datables = () => {
 
 }
 
-const add_rows_to_table = (data) => {
+const add_rows_to_table = (data,unitID) => {
     //add rows to table
     let table_row_container = document.getElementById("table_row_container")
     let table_row_template = document.getElementById("table_row_template")
@@ -56,8 +56,8 @@ const add_rows_to_table = (data) => {
 
 
     let button = property_data.querySelectorAll("button")
-    button[0].id = data.Number
-    button[1].id = data.Number
+    button[0].id = unitID
+    button[1].id = unitID
 
 
     table_row_container.appendChild(property_data)
@@ -98,7 +98,7 @@ const fetch_table_data = async () => {
             console.log(doc.id, " => ", doc.data());
             let data = doc.data()
             console.log(data);
-            add_rows_to_table(data)
+            add_rows_to_table(data, doc.id)
         });
         initialize_datables()
 
@@ -195,9 +195,15 @@ const create_new_unit = async (new_units_inputs) => {
 
     console.log(propertyName)
 
+    await addDoc(collection(db, "users", user_email, "properties", propertyName, "units"), {
+        Number: new_units_inputs[0],
+        Status: new_units_inputs[1],
+        Type: new_units_inputs[2],
+        Price: new_units_inputs[3]
+    });
 
     //const newPropertyRef =doc(db,"users", user_email,new_property_inputs[0] )
-    const newUnitRef = doc(db, "users", user_email, "properties", propertyName, "units", new_units_inputs[0])
+    /*const newUnitRef = doc(db, "users", user_email, "properties", propertyName, "units", new_units_inputs[0])
 
     await setDoc(newUnitRef, {
         Number: new_units_inputs[0],
@@ -205,7 +211,7 @@ const create_new_unit = async (new_units_inputs) => {
         Type: new_units_inputs[2],
         Price: new_units_inputs[3]
 
-    })
+    })*/
 
 }
 
@@ -310,11 +316,12 @@ const delete_unit = async (name) => {
 }
 
 const load_unit_page = (name) => {
-    console.log(name)
+    
     let property_Url = "landlord_unit.html" 
 
     // Save data to sessionStorage
     sessionStorage.setItem('unit', name);
+    
     window.location.replace(property_Url)
 
 }

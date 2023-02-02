@@ -2,7 +2,7 @@
 // add user
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc ,addDoc} from "firebase/firestore";
 import { DataTable } from "simple-datatables";
 import { app, firebaseConfig } from "./firebase_config";
 
@@ -95,9 +95,19 @@ const create_new_property = async (new_property_inputs) => {
     console.log(user_email)
 
 
+     await addDoc(collection(db, "users", user_email, "properties"), {
+        Name: new_property_inputs[0],
+        Type: new_property_inputs[1],
+        Units: new_property_inputs[2],
+        Owner: new_property_inputs[3],
+        Account: new_property_inputs[4],
+        Address: new_property_inputs[5],
+        City: new_property_inputs[6],
+        Zip: new_property_inputs[7]
+    });
 
     //const newPropertyRef =doc(db,"users", user_email,new_property_inputs[0] )
-    const newPropertyRef = doc(db, "users", user_email, "properties", new_property_inputs[0])
+    /*const newPropertyRef = doc(db, "users", user_email, "properties", new_property_inputs[0])
 
     await setDoc(newPropertyRef, {
         Name: new_property_inputs[0],
@@ -108,7 +118,7 @@ const create_new_property = async (new_property_inputs) => {
         Address: new_property_inputs[5],
         City: new_property_inputs[6],
         Zip: new_property_inputs[7]
-    })
+    })*/
 
 }
 
@@ -171,7 +181,7 @@ const fetch_table_data = async () => {
             console.log(doc.id, " => ", doc.data());
             let data = doc.data()
             console.log(data);
-            add_rows_to_table(data)
+            add_rows_to_table(data, doc.id)
         });
         initialize_datables()
 
@@ -180,7 +190,7 @@ const fetch_table_data = async () => {
 
 }
 
-const add_rows_to_table = (data) => {
+const add_rows_to_table = (data, propertyID) => {
     //add rows to table
     let table_row_container = document.getElementById("table_row_container")
     let table_row_template = document.getElementById("table_row_template")
@@ -200,10 +210,10 @@ const add_rows_to_table = (data) => {
     td[7].textContent = data.Zip
 
     let button = property_data.querySelectorAll("button")
-    button[0].id = data.Name
-    button[1].id = data.Name
+    button[0].id = propertyID
+    button[1].id = propertyID
 
-    
+
 
 
 
@@ -235,7 +245,7 @@ const initialize_datables = () => {
 
                         document.getElementById("remove_property_confirm_button").dataset.name = button.id
                         document.getElementById("view_property_confirm_button").dataset.name = button.id
-                        
+
                     }
                 )
             }
@@ -316,7 +326,7 @@ const alert = (alert_id, alert_content) => {
 
 const load_property_page = (name) => {
     console.log(name)
-    let property_Url = "landlord_property.html" 
+    let property_Url = "landlord_property.html"
 
     // Save data to sessionStorage
     sessionStorage.setItem('property', name);

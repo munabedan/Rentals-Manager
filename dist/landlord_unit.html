@@ -301,36 +301,53 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Add a new unit</h5>
+                            <h5 class="card-title">Add a new payment</h5>
 
 
                             <!-- General Form Elements -->
                             <form>
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Unit Number</label>
+                                    <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="unitNumber">
+                                        <input type="text" class="form-control" id="paymentName">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Status</label>
+                                    <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="unitStatus">
+                                        <input type="text" class="form-control" id="paymentAmount">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Type</label>
+                                    <label for="inputText" class="col-sm-2 col-form-label">Payment Method</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="unitType">
+                                        <input type="text" class="form-control" id="paymentMethod">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                                    <label for="inputText" class="col-sm-2 col-form-label">Account Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="unitPrice">
+                                        <input type="text" class="form-control" id="paymentPrice">
                                     </div>
                                 </div>
-
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Value Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="paymentDate">
+                                    </div>
+                                </div>                                 
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Reference Number</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="paymentReference">
+                                    </div>
+                                </div>                                
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Period Cover</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="paymentPeriod">
+                                    </div>
+                                </div>
 
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Submit Button</label>
@@ -340,25 +357,25 @@
                                             form</button>
 
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#add_unit_modal">
-                                            <i class="bi bi-person-plus-fill"></i> Add Unit
+                                            data-bs-target="#add_payment_modal">
+                                            <i class="bi bi-person-plus-fill"></i> Add Payment
                                         </button>
 
-                                        <div class="modal fade" id="add_unit_modal" tabindex="-1">
+                                        <div class="modal fade" id="add_payment_modal" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Add unit</h5>
+                                                        <h5 class="modal-title">Add Payment</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Confirming this action will create a new unit.
+                                                        Confirming this action will add a new payment.
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" id="add_new_unit_confirm_button"
+                                                        <button type="button" id="add_new_payment_confirm_button"
                                                             class="btn btn-primary"
                                                             data-bs-dismiss="modal">Confirm</button>
                                                     </div>
@@ -388,14 +405,14 @@
 
                         <div class="filter">
                             <div class="icon">
-                                <button type="button" id="new_unit_button" class="btn btn-primary"><i
+                                <button type="button" id="new_payment_button" class="btn btn-primary"><i
                                         class="bi bi-plus"></i> New</button>
                             </div>
 
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Units </h5>
+                            <h5 class="card-title">Payment Records </h5>
                             <div id="table_container">
 
                             </div>
@@ -403,11 +420,16 @@
                                 <table class="table table-borderless " id="myTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Unit Number</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">type</th>
-                                            <th scope="col">Price</th>
+                                            <th scope="col">Payment Name</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">Account Name</th>
+                                            <th scope="col">Value Date</th>
+                                            <th scope="col">Reference Number</th>
+                                            <th scope="col">Period Cover</th>
                                             <th scope="col">Actions</th>
+
+                                            
 
 
                                         </tr>
@@ -424,21 +446,20 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
                                     <td>
                                         <div class="d-flex mb-3">
 
                                             <!-- Vertically centered Modal -->
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#remove_unit_modal">
+                                                data-bs-target="#remove_payment_modal">
                                                 <i class="bi bi-person-dash-fill"></i>
 
                                             </button>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#view_unit_modal">
-                                                <i class="bi bi-eye"></i>
-
-                                            </button>
+                                            
 
 
                                         </div>
@@ -458,41 +479,25 @@
 
 
 
-            <div class="modal fade" id="remove_unit_modal" tabindex="-1">
+            <div class="modal fade" id="remove_payment_modal" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Remove Unit</h5>
+                            <h5 class="modal-title">Remove Payment</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Confirming this action will delete this unit.
+                            Confirming this action will delete this payment.
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-danger" id="remove_unit_confirm_button">Confirm</button>
+                            <button class="btn btn-danger" id="remove_payment_confirm_button">Confirm</button>
                         </div>
                     </div>
                 </div>
             </div><!-- End Vertically centered Modal-->
 
-            <div class="modal fade" id="view_unit_modal" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">View Unit</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Confirming this action will view this unit.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-danger" id="view_unit_confirm_button">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Vertically centered Modal-->
+          
         </section>
 
 

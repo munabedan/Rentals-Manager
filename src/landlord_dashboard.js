@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
   console.log("loaded maite")
+  //log session storage
+  console.log(sessionStorage)
+
   fetch_current_user_email()
 
   display_property_table()
@@ -50,8 +53,8 @@ function init() {
     }
   )
 
-    // add confirm event listener
-    document.getElementById("view_property_confirm_button").addEventListener('click',
+  // add confirm event listener
+  document.getElementById("view_property_confirm_button").addEventListener('click',
     function (event) {
 
       console.log("click")
@@ -62,7 +65,7 @@ function init() {
 
     }
   )
-  
+
 
 };
 

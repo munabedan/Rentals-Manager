@@ -1,5 +1,5 @@
 import { fetch_current_user_email, sign_out_user } from "./lib/admin";
-import { add_new_unit, delete_unit, display_unit_table ,load_unit_page} from "./lib/property";
+import { add_new_unit, delete_unit, display_unit_table, load_unit_page } from "./lib/property";
 
 
 
@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
   console.log("loaded maite")
+  //log session storage
+  console.log(sessionStorage)
   fetch_current_user_email()
 
   display_unit_table()
@@ -50,8 +52,8 @@ function init() {
     }
   )
 
-    // add confirm event listener
-    document.getElementById("view_unit_confirm_button").addEventListener('click',
+  // add confirm event listener
+  document.getElementById("view_unit_confirm_button").addEventListener('click',
     function (event) {
 
       console.log("click")
