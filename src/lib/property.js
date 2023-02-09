@@ -1,6 +1,6 @@
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc , addDoc} from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc, addDoc } from "firebase/firestore";
 import { DataTable } from "simple-datatables";
 import { app, firebaseConfig } from "./firebase_config";
 
@@ -17,18 +17,33 @@ const initialize_datables = () => {
         console.log(buttons)
 
 
+
+
         buttons.forEach(
             (button, index) => {
-                if (index === 0 || index === buttons.length - 1 || button.textContent === "Close") return;
-                button.addEventListener("click",
-                    () => {
-                        console.log(button.id)
 
-                        document.getElementById("remove_unit_confirm_button").dataset.name = button.id
-                        document.getElementById("view_unit_confirm_button").dataset.name = button.id
 
-                    }
-                )
+                document.getElementById("remove_unit_confirm_button").dataset.name = button.dataset.unitID
+
+
+            }
+        )
+
+        let view_buttons = document.querySelectorAll(".view-btn")
+
+
+        console.log("view_buttons:", view_buttons)
+
+        view_buttons.forEach(
+            (button, index) => {
+
+                button.addEventListener("click", () => {
+                    console.log("view button clicked")
+                    load_unit_page(button.dataset.unit_id)
+                })
+
+
+
             }
         )
     })
@@ -39,7 +54,7 @@ const initialize_datables = () => {
 
 }
 
-const add_rows_to_table = (data,unitID) => {
+const add_rows_to_table = (data, unitID) => {
     //add rows to table
     let table_row_container = document.getElementById("table_row_container")
     let table_row_template = document.getElementById("table_row_template")
@@ -56,8 +71,10 @@ const add_rows_to_table = (data,unitID) => {
 
 
     let button = property_data.querySelectorAll("button")
-    button[0].id = unitID
-    button[1].id = unitID
+    button[0].dataset.unit_id = unitID
+    button[1].dataset.unit_id = unitID
+
+
 
 
     table_row_container.appendChild(property_data)
@@ -316,13 +333,13 @@ const delete_unit = async (name) => {
 }
 
 const load_unit_page = (name) => {
-    
-    let property_Url = "landlord_unit.html" 
+
+    let unit_Url = "landlord_unit.html"
 
     // Save data to sessionStorage
     sessionStorage.setItem('unit', name);
-    
-    window.location.replace(property_Url)
+    window.open(unit_Url, "_self")
+
 
 }
 export {

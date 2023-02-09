@@ -217,9 +217,9 @@ const add_rows_to_table = (data, propertyID) => {
 
     table_row_container.appendChild(property_data)
 
-  
 
-    
+
+
 
 }
 
@@ -241,7 +241,7 @@ const initialize_datables = () => {
 
 
                 document.getElementById("remove_property_confirm_button").dataset.name = button.dataset.propertyID
-               
+
             }
         )
 
@@ -249,7 +249,7 @@ const initialize_datables = () => {
         let view_buttons = document.querySelectorAll(".view-btn")
 
 
-        console.log("view_buttons:",view_buttons)
+        console.log("view_buttons:", view_buttons)
 
         view_buttons.forEach(
             (button, index) => {
@@ -357,7 +357,13 @@ const load_property_page = (name) => {
 
     // Save data to sessionStorage
     sessionStorage.setItem('property', name);
-    window.location.replace(property_Url)
+    //open property page
+    window.open(property_Url, "_self")
+
+    
+
+
+
 
 
 

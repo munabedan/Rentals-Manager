@@ -52,18 +52,6 @@ function init() {
     }
   )
 
-  // add confirm event listener
-  document.getElementById("view_unit_confirm_button").addEventListener('click',
-    function (event) {
-
-      console.log("click")
-      let name = document.getElementById("view_unit_confirm_button").dataset.name
-      load_unit_page(name)
-
-      event.preventDefault();
-
-    }
-  )
 
 };
 
