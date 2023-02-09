@@ -2,7 +2,7 @@
 // add user
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc ,addDoc} from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc, addDoc } from "firebase/firestore";
 import { DataTable } from "simple-datatables";
 import { app, firebaseConfig } from "./firebase_config";
 
@@ -95,7 +95,7 @@ const create_new_property = async (new_property_inputs) => {
     console.log(user_email)
 
 
-     await addDoc(collection(db, "users", user_email, "properties"), {
+    await addDoc(collection(db, "users", user_email, "properties"), {
         Name: new_property_inputs[0],
         Type: new_property_inputs[1],
         Units: new_property_inputs[2],
@@ -210,16 +210,16 @@ const add_rows_to_table = (data, propertyID) => {
     td[7].textContent = data.Zip
 
     let button = property_data.querySelectorAll("button")
-    button[0].id = propertyID
-    button[1].id = propertyID
-
-
+    button[0].dataset.property_id = propertyID
+    button[1].dataset.property_id = propertyID
 
 
 
     table_row_container.appendChild(property_data)
 
+  
 
+    
 
 }
 
@@ -238,24 +238,51 @@ const initialize_datables = () => {
 
         buttons.forEach(
             (button, index) => {
-                if (index === 0 || index === buttons.length - 1 || button.textContent === "Close") return;
-                button.addEventListener("click",
-                    () => {
-                        console.log(button.id)
 
-                        document.getElementById("remove_property_confirm_button").dataset.name = button.id
-                        document.getElementById("view_property_confirm_button").dataset.name = button.id
 
-                    }
-                )
+                document.getElementById("remove_property_confirm_button").dataset.name = button.dataset.propertyID
+               
+            }
+        )
+
+
+        let view_buttons = document.querySelectorAll(".view-btn")
+
+
+        console.log("view_buttons:",view_buttons)
+
+        view_buttons.forEach(
+            (button, index) => {
+
+                button.addEventListener("click", () => {
+                    console.log("view button clicked")
+                    load_property_page(button.dataset.property_id)
+                })
+
+
+
             }
         )
     })
+}
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
 
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
 
-
-
-
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
 }
 
 const delete_property = async (name) => {

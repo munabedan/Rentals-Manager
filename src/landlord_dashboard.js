@@ -53,18 +53,7 @@ function init() {
     }
   )
 
-  // add confirm event listener
-  document.getElementById("view_property_confirm_button").addEventListener('click',
-    function (event) {
-
-      console.log("click")
-      let name = document.getElementById("view_property_confirm_button").dataset.name
-      load_property_page(name)
-
-      event.preventDefault();
-
-    }
-  )
+ 
 
 
 };
