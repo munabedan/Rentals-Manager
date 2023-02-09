@@ -1,4 +1,5 @@
 import { fetch_current_user_email, sign_out_user } from "./lib/admin";
+import { add_new_profile, display_profile_card } from "./lib/profile";
 import { add_new_payment, delete_payment, display_payment_table ,load_payment_page} from "./lib/unit";
 
 
@@ -14,7 +15,11 @@ function init() {
 
   fetch_current_user_email()
 
+  display_profile_card()
+
+
   display_payment_table()
+
 
 
 
@@ -53,6 +58,17 @@ function init() {
 
     }
   )
+
+  document.getElementById("save_profile").addEventListener('click',
+  function (event) {
+
+    add_new_profile()
+
+    event.preventDefault();
+
+  }
+)
+
 
     // add confirm event listener
    /* document.getElementById("view_unit_confirm_button").addEventListener('click',

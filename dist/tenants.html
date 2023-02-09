@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Rentals Manager - Admin</title>
+    <title>Rentals Manager - Property</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -28,7 +28,7 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-    <script type="module" src="assets/js/admin_dashboard.js"></script>
+    <script type="module" src="assets/js/tenant_dashboard.js"></script>
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
 
@@ -79,7 +79,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Admin Dashboard</h1>
+            <h1>Property Dashboard</h1>
 
         </div><!-- End Page Title -->
 
@@ -98,82 +98,114 @@
 
         </div>
 
-        <template id="form_template">
-            <div class="row justify-content-md-center">
-                <div class="col-lg-6 ">
+        <section class="section profile">
+            <div class="row justify-content-center">
+
+
+                <div class="col-xl-8">
 
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Create new user</h5>
+                        <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="tab"
+                                        data-bs-target="#profile-overview">Overview</button>
+                                </li>
 
 
-                            <!-- General Form Elements -->
-                            <form>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="userName">
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#tenant-credentials">Credentials</button>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content pt-2">
+
+                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                                        <div class="col-lg-9 col-md-8 tenantName "></div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="userEmail">
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Company</div>
+                                        <div class="col-lg-9 col-md-8 tenantCompany"></div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="userPassword">
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Job</div>
+                                        <div class="col-lg-9 col-md-8 tenantJob"></div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Country</div>
+                                        <div class="col-lg-9 col-md-8 tenantCountry"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Address</div>
+                                        <div class="col-lg-9 col-md-8 tenantAddress"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Phone</div>
+                                        <div class="col-lg-9 col-md-8 tenantPhone"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Email</div>
+                                        <div class="col-lg-9 col-md-8 tenantEmail"></div>
+                                    </div>
+
                                 </div>
 
-                                <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Submit Button</label>
-                                    <div class="col-sm-10">
-                                        <!-- Vertically centered Modal -->
-                                        <button type="button" class="btn btn-secondary" id="form_dismiss">Dismiss form</button>
+                              
 
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#add_user_modal">
-                                            <i class="bi bi-person-plus-fill"></i> Add user
-                                        </button>
 
-                                        <div class="modal fade" id="add_user_modal" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Add user</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Confirming this action will create a new user account.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" id="add_new_user_confirm_button"
-                                                            class="btn btn-primary"
-                                                            data-bs-dismiss="modal">Confirm</button>
-                                                    </div>
-                                                </div>
+
+                                <div class="tab-pane fade pt-3" id="tenant-credentials">
+                                    <!-- Change Password Form -->
+                                    <div>
+
+
+
+                                        <div class="row mb-3">
+                                            <label for="tenantEmail" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="tenantEmail" readonly type="text" class="form-control"
+                                                    id="tenantEmail">
                                             </div>
-                                        </div><!-- End Vertically centered Modal-->
-                                    </div>
+                                        </div>
+
+
+                                        <div class="row mb-3">
+                                            <label for="tenantPassword"  class="col-md-4 col-lg-3 col-form-label">Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="tenantPassword" readonly type="text" class="form-control"
+                                                    id="tenantPassword">
+                                            </div>
+                                        </div>
+
+
+                                    </div><!-- End Change Password Form -->
+
                                 </div>
 
-                            </form><!-- End General Form Elements -->
+                            </div><!-- End Bordered Tabs -->
 
                         </div>
                     </div>
 
                 </div>
-
             </div>
+        </section>
 
-        </template>
 
+        
         <section class="section dashboard">
             <div class="row">
 
@@ -181,16 +213,10 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 
-                        <div class="filter">
-                            <div class="icon">
-                                <button type="button" id="new_user_button" class="btn btn-primary"><i
-                                        class="bi bi-plus"></i> New</button>
-                            </div>
-
-                        </div>
+                        
 
                         <div class="card-body">
-                            <h5 class="card-title">Landlords </h5>
+                            <h5 class="card-title">Payment Records </h5>
                             <div id="table_container">
 
                             </div>
@@ -198,9 +224,15 @@
                                 <table class="table table-borderless " id="myTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col">Payment Name</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">Account Name</th>
+                                            <th scope="col">Value Date</th>
+                                            <th scope="col">Reference Number</th>
+                                            <th scope="col">Period Cover</th>
+
+
 
 
                                         </tr>
@@ -213,22 +245,15 @@
 
                             <template id="table_row_template">
                                 <tr>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-10">
-                                                <!-- Vertically centered Modal -->
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#remove_user_modal">
-                                                    <i class="bi bi-person-dash-fill"></i>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
 
-                                                </button>
-
-
-                                            </div>
-                                        </div>
-                                    </td>
+                                    
                                 </tr>
                             </template>
 
@@ -244,23 +269,8 @@
 
 
 
-            <div class="modal fade" id="remove_user_modal" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Remove user</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Confirming this action will delete user account.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-danger" id="remove_user_confirm_button">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Vertically centered Modal-->
+
+
         </section>
 
 

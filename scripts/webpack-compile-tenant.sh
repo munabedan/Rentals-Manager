@@ -1,0 +1,1 @@
+node_modules/.bin/webpack --entry ./src/tenant_dashboard.js -o dist/assets/js --output-filename tenant_dashboard.js
